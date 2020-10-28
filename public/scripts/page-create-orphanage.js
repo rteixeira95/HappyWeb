@@ -9,7 +9,7 @@ L
 //create icon
 const icon = L
     .icon({
-        iconUrl: "./public/images/map-marker.svg",
+        iconUrl: "/images/map-marker.svg",
         iconSize: [58, 68],
         iconAnchor: [29, 68]
     });
@@ -19,7 +19,7 @@ const popup = L.popup({
     className: "map-popup",
     minWidth: 240,
     minHeight: 240
-}).setContent('Lar das meninas <a href="orphanage.html?id=1" class="choose-orphanage"> <img src="./public/images/arrow-white.svg" > </a>')
+}).setContent('Lar das meninas <a href="/orphanage?id=1" class="choose-orphanage"> <img src="/images/arrow-white.svg" > </a>')
 
 let marker;
 //create and add marker
@@ -73,7 +73,7 @@ function deletField(event) {
 function toggleSelect(event) {
     // retirar a class .active dos 2 btns
     document.querySelectorAll('.button-select button')
-        .forEach((button) => button.classList.remove('active'))
+        .forEach((button) =>  .classList.remove('active'))
     // colocar a class .active do botao clicado
     const button = event.currentTarget
     button.classList.add('active')
