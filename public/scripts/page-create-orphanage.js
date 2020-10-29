@@ -13,6 +13,7 @@ const icon = L
         iconSize: [58, 68],
         iconAnchor: [29, 68]
     });
+let marker;
 //create popup layer
 const popup = L.popup({
     closeButton: false,
@@ -21,15 +22,15 @@ const popup = L.popup({
     minHeight: 240
 }).setContent('Lar das meninas <a href="/orphanage?id=1" class="choose-orphanage"> <img src="/images/arrow-white.svg" > </a>')
 
-let marker;
+
 //create and add marker
 map.on('click', (event) => {
 
     const lat = event.latlng.lat
     const lng = event.latlng.lng
 
-    document.querySelector('[name=lat').value = lat;
-    document.querySelector('[name=lng').value = lng;
+    document.querySelector('[name=lat]').value = lat;
+    document.querySelector('[name=lng]').value = lng;
 
     // remove icon 
     marker && map.removeLayer(marker)
@@ -73,7 +74,7 @@ function deletField(event) {
 function toggleSelect(event) {
     // retirar a class .active dos 2 btns
     document.querySelectorAll('.button-select button')
-        .forEach((button) =>  .classList.remove('active'))
+        .forEach((button) => button.classList.remove('active'))
     // colocar a class .active do botao clicado
     const button = event.currentTarget
     button.classList.add('active')
@@ -81,4 +82,16 @@ function toggleSelect(event) {
     const input = document.querySelector('[name="open_on_weekends"]')
     // verificar se sim ou não
     input.value = button.dataset.value
+}
+function validate(event) {
+
+    // validar se lat e lng estao preenchidos
+    const needsLatAndLng = false;
+    if (document.querySelector('[name ="lat"]').value && document.querySelector('[name ="lng"]').value ) {
+        needsLatAndLng = true;
+    }
+    if (!needsLatAndLng) {
+        event.preventDefault()
+        alert('Selecione um ponto no mapa')
+    }
 }
